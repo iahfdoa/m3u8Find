@@ -61,17 +61,29 @@ func (r *Result) GetTag() chan *map[string][]UsersInfo {
 }
 
 type UsersInfo struct {
-	Id                   int    `json:"id" csv:"id"`
-	Username             string `json:"username" csv:"username"`
-	Country              string `json:"country" csv:"country"`
-	IsLive               bool   `json:"isLive" csv:"isLive"`
-	IsOnline             bool   `json:"isOnline" csv:"isOnline"`
-	Gender               string `json:"gender" csv:"gender"`
-	PreviewUrlThumbBig   string `json:"previewUrlThumbBig" csv:"previewUrlThumbBig"`
-	PreviewUrlThumbSmall string `json:"previewUrlThumbSmall" csv:"previewUrlThumbSmall"`
-	HlsPlaylist          string `json:"hlsPlaylist" csv:"hlsPlaylist"`
-	ParentTag            string `csv:"parentTag"`
+	Id                   int    `json:"id" csv:"主播ID"`
+	Username             string `json:"username" csv:"名字"`
+	Country              string `json:"country" csv:"国家"`
+	IsLive               bool   `json:"isLive" csv:"是否在直播"`
+	IsOnline             bool   `json:"isOnline" csv:"是否在线"`
+	Gender               string `json:"gender" csv:"性别"`
+	PreviewUrlThumbBig   string `json:"previewUrlThumbBig" csv:"图片封面大"`
+	PreviewUrlThumbSmall string `json:"previewUrlThumbSmall" csv:"图片封面小"`
+	HlsPlaylist          string `json:"hlsPlaylist" csv:"直播地址"`
+	ParentTag            string `csv:"分类"`
 }
+
+//type UsersInfo struct {
+//	Id                   int    `json:"id" csv:"id"`
+//	Username             string `json:"username" csv:"username"`
+//	Country              string `json:"country" csv:"country"`
+//	IsLive               bool   `json:"isLive" csv:"isLive"`
+//	IsOnline             bool   `json:"isOnline" csv:"isOnline"`
+//	Gender               string `json:"gender" csv:"gender"`
+//	PreviewUrlThumbBig   string `json:"previewUrlThumbBig" csv:"previewUrlThumbBig"`
+//	PreviewUrlThumbSmall string `json:"previewUrlThumbSmall" csv:"previewUrlThumbSmall"`
+//	HlsPlaylist          string `json:"hlsPlaylist" csv:"hlsPlaylist"`
+//}
 
 func HasInArray(Id int, users []UsersInfo) (ok bool) {
 	ok = false
