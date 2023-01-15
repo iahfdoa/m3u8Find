@@ -74,6 +74,7 @@ type UsersInfo struct {
 }
 
 func HasInArray(Id int, users []UsersInfo) (ok bool) {
+	ok = false
 	for _, user := range users {
 		if user.Id == Id {
 			ok = true

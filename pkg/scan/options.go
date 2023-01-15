@@ -11,5 +11,6 @@ type Options struct {
 	Rate        int
 	Debug       bool
 	ModelsRoute string
+	PrimaryTag  string
 	Client      *http.Client
 }

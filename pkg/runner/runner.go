@@ -47,7 +47,6 @@ func (runner *Runner) Run() {
 	runner.handleOutput(runner.scanner.ScanResults)
 
 }
-
 func (runner *Runner) handleOutput(scanResults *result.Result) {
 	var (
 		output string
@@ -143,7 +142,6 @@ func (runner *Runner) handle(limit int, tag string) {
 	userinfo, ok := runner.scanner.GetModelsRouteResult(tag, limit)
 	if ok {
 		runner.scanner.ScanResults.AddTag(tag, userinfo)
-		gologger.Debug().Msgf("请求成功 %s ,获得 %d 个主播信息", tag, len(userinfo))
 	}
 }
 func NewTag(client *http.Client, options *UserOptions) (*map[string]map[string]int, error) {
@@ -186,12 +184,10 @@ func NewTag(client *http.Client, options *UserOptions) (*map[string]map[string]i
 			m[k] = v
 		} else if options.AutoLimit {
 			m[k]["modelsLive"] = value["modelsLive"]
-
 		}
 	}
 	return &m, nil
 }
-
 func NewRunner(options *UserOptions) (*Runner, error) {
 	runner := &Runner{options: options}
 	client, err := NewClient(options)
@@ -205,6 +201,7 @@ func NewRunner(options *UserOptions) (*Runner, error) {
 		Rate:        options.Rate,
 		Debug:       options.Debug,
 		Client:      client,
+		PrimaryTag:  options.PrimaryTag,
 		ModelsRoute: options.MainUrl + options.ModelsRoute,
 	})
 	runner.scanner = scanner

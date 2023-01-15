@@ -35,8 +35,6 @@ func writeCSVHeaders(data *result.UsersInfo, writer *csv.Writer) {
 		gologger.Error().Msgf(errMsg.Error())
 	}
 }
-
-//
 func writeCSVRow(data *result.UsersInfo, writer *csv.Writer) {
 	rowData, err := data.CSVFields()
 	if err != nil {
@@ -48,12 +46,10 @@ func writeCSVRow(data *result.UsersInfo, writer *csv.Writer) {
 		gologger.Error().Msgf(errMsg.Error())
 	}
 }
-
 func setM3u8Header(s string) string {
 	s = "#EXTM3U x-tvg-url = \"\"\n" + s
 	return s
 }
-
 func outputCsvAllUsers(filename string, us []result.UsersInfo) error {
 	if us == nil {
 		return errors.New("不存在主播")
@@ -79,7 +75,6 @@ func outputCsvAllUsers(filename string, us []result.UsersInfo) error {
 	}
 	return nil
 }
-
 func outputM3u8Users(filename, groupRole string, users []result.UsersInfo) error {
 	if users == nil {
 		return errors.New("沒有主播信息")

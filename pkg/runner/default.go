@@ -2,7 +2,7 @@ package runner
 
 import "strings"
 
-var PrimaryTags = []string{`girls`, `couples`, `autoTagHd`, `new`, `men`}
+var PrimaryTags = []string{`girls`, `couples`, `trans`, `men`}
 var ParentTags = []string{
 	"tagLanguageUkrainian",
 	"tagLanguageChinese",

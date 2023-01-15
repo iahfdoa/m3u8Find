@@ -16,7 +16,7 @@ import (
 type Scanner struct {
 	client      *http.Client
 	ScanResults *result.Result
-	PrimaryTag  string
+	primaryTag  string
 	ModelsRoute string
 	Phase       Phase
 	debug       bool
@@ -26,7 +26,7 @@ type Scanner struct {
 
 func (s *Scanner) GetModelsRouteResult(tag string, limit int) ([]result.UsersInfo, bool) {
 	client := s.client
-	primaryTag := s.PrimaryTag
+	primaryTag := s.primaryTag
 	parentTag := tag
 	payload := s.ModelsRoute + "?primaryTag=" + primaryTag + "&parentTag=" + parentTag + "&limit=" + strconv.Itoa(limit)
 	request, _ := http.NewRequest("GET", payload, nil)
@@ -41,6 +41,7 @@ func (s *Scanner) GetModelsRouteResult(tag string, limit int) ([]result.UsersInf
 			gologger.Debug().Msg(err.Error())
 		}
 	}(dial.Body)
+
 	type modelsResult struct {
 		Models []map[string]interface{} `json:"models"`
 	}
@@ -73,7 +74,7 @@ func (s *Scanner) GetModelsRouteResult(tag string, limit int) ([]result.UsersInf
 		users = append(users, user)
 
 	}
-
+	gologger.Debug().Msgf("请求成功 %s ,获得 %d 个主播信息", payload, len(users))
 	return users, true
 }
 
@@ -100,12 +101,14 @@ func NewScanner(options *Options) *Scanner {
 		TagUserinfo: make(map[string][]result.UsersInfo),
 	}
 	return &Scanner{
+		client:      options.Client,
+		ScanResults: scanResult,
+		primaryTag:  options.PrimaryTag,
+		ModelsRoute: modelsRoute,
+		Phase:       Phase{},
 		debug:       debug,
 		retries:     retries,
 		rate:        rate,
-		client:      options.Client,
-		ModelsRoute: modelsRoute,
-		ScanResults: scanResult,
 	}
 }
 

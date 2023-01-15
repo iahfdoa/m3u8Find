@@ -113,7 +113,6 @@ func ParseUserOptions() *UserOptions {
 		flagSet.BoolVarP(&userOptions.Debug, "debug", "d", false, "调试模式"),
 	)
 	_ = flagSet.Parse()
-
 	var err error
 	if userOptions.Output != "" {
 		userOptions.Output, _ = filepath.Abs(userOptions.Output)
